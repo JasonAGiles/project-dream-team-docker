@@ -8,10 +8,13 @@ RUN pip install -r requirements.txt
 
 COPY config.py .
 COPY tests.py .
-COPY app.py .
+COPY run.py .
 
 COPY migrations ./migrations
 COPY app ./app
+
+ENV FLASK_APP=run.py
+ENV FLASK_CONFIG=production
 
 ENTRYPOINT ["flask"]
 CMD ["run"]
