@@ -16,6 +16,7 @@ class TestBase(TestCase):
         config_name = 'testing'
         app = create_app(config_name)
         app.config.update(
+            SECRET_KEY='test-secret-key',
             SQLALCHEMY_DATABASE_URI='sqlite:///'
         )
         return app
