@@ -16,6 +16,7 @@ COPY app ./app
 ENV FLASK_APP=run.py
 ENV FLASK_CONFIG=production
 
+RUN mkdir instance
 RUN ln -s /run/secrets/instance.config.py /home/app/instance/config.py
 
 ENTRYPOINT ["python"]
