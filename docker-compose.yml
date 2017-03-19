@@ -16,7 +16,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
   nginx:
-    build: .
+    build: ./nginx
     image: nginx
     container_name: nginx
     ports:
