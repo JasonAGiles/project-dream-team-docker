@@ -18,4 +18,10 @@ node {
       docker.build 'project-dream-team-docker'
     }
   }
+
+  stage ('Test') {
+    performOnDockerServer() {
+      sh 'docker run --rm project-dream-team-docker tests.py'
+    }
+  }
 }

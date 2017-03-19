@@ -16,5 +16,5 @@ COPY app ./app
 ENV FLASK_APP=run.py
 ENV FLASK_CONFIG=production
 
-ENTRYPOINT ["flask"]
-CMD ["run"]
+ENTRYPOINT ["python"]
+CMD ["run.py"]
