@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    image: project-dream-team-docker
+    container_name: web
+    networks:
+      backend:
+      frontend:
+  db:
+    image: mysql:5.7.17
+    container_name: db
+    networks:
+      backend:
+    volumes:
+      - db-data:/var/lib/mysql
+  nginx:
+    build: .
+    image: nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    networks:
+      backend:
+      frontend:
+networks:
+  backend:
+    internal: true
+  frontend:
+volumes:
+  db-data:

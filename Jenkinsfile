@@ -24,4 +24,15 @@ node {
       sh 'docker run --rm project-dream-team-docker tests.py'
     }
   }
+
+  stage ('Deploy') {
+    performOnDockerServer() {
+      withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'productionOverride')]) {
+          // some block
+      }
+
+      sh "docker-compose -f docker-compose.yml -f ${productionOverride} build"
+      sh "docker-compose -f docker-compose.yml -f ${productionOverride} up -d"
+    }
+  }
 }
