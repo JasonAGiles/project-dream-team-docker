@@ -37,8 +37,8 @@ node {
 
   stage ('Deploy') {
     performOnDockerServer() {
-      withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'productionOverride')]) {
-        sh "docker stack deploy --compose-file=docker-compose.yml --compose-file=${productionOverride} project-dream-team-docker"
+      withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'dockerCompose')]) {
+        sh "docker stack deploy --compose-file=${dockerCompose} project-dream-team-docker"
       }
     }
   }
