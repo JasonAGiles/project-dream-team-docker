@@ -29,7 +29,7 @@ node {
 
   stage ('Push') {
     performOnDockerServer() {
-      docker.withRegistry('https://hub.docker.com/jagiles/project-dream-team-docker', 'jagiles-docker-registry') {
+      docker.withRegistry('jagiles', 'jagiles-docker-registry') {
         output.push('latest')
       }
     }
