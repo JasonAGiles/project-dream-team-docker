@@ -30,6 +30,3 @@ networks:
   frontend:
 volumes:
   db-data:
-secrets:
-  example:
-    external: true
