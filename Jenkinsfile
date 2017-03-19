@@ -8,6 +8,8 @@ def performOnDockerServer(closure) {
   }
 }
 
+def output
+
 node {
   stage('Checkout') {
     checkout scm
@@ -15,13 +17,21 @@ node {
 
   stage('Build') {
     performOnDockerServer() {
-      docker.build 'project-dream-team-docker'
+      output = docker.build 'project-dream-team-docker'
     }
   }
 
   stage ('Test') {
     performOnDockerServer() {
       sh 'docker run --rm project-dream-team-docker tests.py'
+    }
+  }
+
+  stage ('Push') {
+    performOnDockerServer() {
+      docker.withRegistry('https://hub.docker.com', 'jagiles-docker-registry') {
+        output.push('jagiles/project-dream-team-docker:latest')
+      }
     }
   }
 

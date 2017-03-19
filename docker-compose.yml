@@ -2,8 +2,7 @@ version: "3.1"
 
 services:
   web:
-    build: .
-    image: project-dream-team-docker
+    image: jagiles/project-dream-team-docker:latest
     container_name: web
     networks:
       backend:
@@ -15,15 +14,6 @@ services:
       backend:
     volumes:
       - db-data:/var/lib/mysql
-  nginx:
-    build: ./nginx
-    image: nginx
-    container_name: nginx
-    ports:
-      - 80:80
-    networks:
-      backend:
-      frontend:
 networks:
   backend:
     internal: true
