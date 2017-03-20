@@ -17,23 +17,23 @@ node {
 
   stage('Build') {
     performOnDockerServer() {
-      output = docker.build 'jagiles/project-dream-team-docker'
+      output = docker.build 'project-dream-team-docker'
     }
   }
 
   stage ('Test') {
     performOnDockerServer() {
-      sh 'docker run --rm jagiles/project-dream-team-docker tests.py'
+      sh 'docker run --rm project-dream-team-docker tests.py'
     }
   }
 
-  stage ('Push') {
-    performOnDockerServer() {
-      docker.withRegistry('https://registry.hub.docker.com', 'jagiles-docker-registry') {
-        output.push('latest')
-      }
-    }
-  }
+  // stage ('Push') {
+  //   performOnDockerServer() {
+  //     docker.withRegistry('https://registry.hub.docker.com', 'jagiles-docker-registry') {
+  //       output.push('latest')
+  //     }
+  //   }
+  // }
 
   stage ('Deploy') {
     performOnDockerServer() {
