@@ -37,10 +37,11 @@ node {
 
   stage ('Deploy') {
     performOnDockerServer() {
-      docker.withRegistry('https://registry.hub.docker.com', 'jagiles-docker-registry') {
-        withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'dockerCompose')]) {
-          sh "docker stack deploy --compose-file=${dockerCompose} project-dream-team-docker"
-        }
+      withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'productionOverride')]) {
+        sh """
+        docker-compose -f ${dockerCompose} build
+        docker-compose -f ${dockerCompose} up -d
+        """
       }
     }
   }
