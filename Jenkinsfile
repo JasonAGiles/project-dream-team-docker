@@ -39,7 +39,6 @@ node {
     performOnDockerServer() {
       withCredentials([file(credentialsId: 'project-dream-team-docker-compose-prod', variable: 'dockerCompose')]) {
         sh """
-        docker-compose -f ${dockerCompose} build
         docker-compose -f ${dockerCompose} up -d
         """
       }
