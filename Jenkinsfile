@@ -23,7 +23,7 @@ node {
 
   stage ('Test') {
     performOnDockerServer() {
-      sh 'docker run --rm project-dream-team-docker tests.py'
+      sh 'docker run --rm --env FLASK_APP=run.py --env FLASK_CONFIG=production project-dream-team-docker tests.py'
     }
   }
 
