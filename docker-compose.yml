@@ -2,7 +2,8 @@ version: "3.1"
 
 services:
   web:
-    image: jagiles/project-dream-team-docker:latest
+    build: .
+    image: project-dream-team-docker
     container_name: web
     networks:
       backend:
